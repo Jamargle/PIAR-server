@@ -8,7 +8,7 @@ exports.pois_by_location = function(req, res) {
 
 		models.sequelize.query(
 			"SELECT * " +
-			"FROM Poi " +
+			"FROM poi " +
 			"WHERE " +
 				"(6371 * acos( cos((" + req.query.lat + " * PI() / 180)) * " +
 				"cos((Latitud * PI() / 180)) * cos((Longitud * PI() / 180) - " +
@@ -18,7 +18,7 @@ exports.pois_by_location = function(req, res) {
 			res.json({"api_pfc" :pois});
 		}).catch(function (err) {
 			//console.log(err);
-			res.send("User not found"+err);
+			res.send("Points not found:"+err);
 		});
 	}else{
 		res.send("404, Bad URL");
@@ -32,7 +32,7 @@ exports.show_all = function(req, res) {
 		res.json({"api_pfc" :pois});
 	}).catch(function (err) {
 		//console.log(err);
-		res.send("User not found"+err);
+		res.send("Points not found:"+err);
 	});
 };
 
