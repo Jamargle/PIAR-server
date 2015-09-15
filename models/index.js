@@ -34,6 +34,13 @@ if (!global.hasOwnProperty('db')) {
     Associations can be defined here. E.g. like this:
     global.db.User.hasMany(global.db.SomethingElse)
   */
+
+  sequelize.sync()
+  .then(function() {
+    console.log("BD iniciada");
+  }).catch(function(err) {
+    console.log("BD no iniciada:"+err);
+  });
 }
 
 module.exports = global.db

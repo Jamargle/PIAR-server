@@ -8,7 +8,7 @@ exports.pois_by_location = function(req, res) {
 
 		models.sequelize.query(
 			"SELECT * " +
-			"FROM poi " +
+			"FROM Poi " +
 			"WHERE " +
 				"(6371 * acos( cos((" + req.query.lat + " * PI() / 180)) * " +
 				"cos((Latitud * PI() / 180)) * cos((Longitud * PI() / 180) - " +
