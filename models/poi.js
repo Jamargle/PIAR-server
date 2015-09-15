@@ -1,5 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
-	return sequelize.define('Poi', {
+	return sequelize.define('poi', {
 		ID_Poi: { 
 			type: DataTypes.INTEGER.UNSIGNED,
 			allowNull: false,
@@ -77,7 +77,7 @@ module.exports = function(sequelize, DataTypes) {
 			defaultValue: 0
 		}
 	}, {
-		tableName: 'Poi',
+		tableName: 'poi',
 		timestamps: false
 	});
 };
