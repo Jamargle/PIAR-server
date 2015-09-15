@@ -10,10 +10,10 @@ exports.pois_by_location = function(req, res) {
 			"SELECT * " +
 			"FROM poi " +
 			"WHERE " +
-				"(6371 * acos( cos((" + req.query.lat + " * PI() / 180)) * " +
-				"cos((poi.latitud * PI() / 180)) * cos((poi.longitud * PI() / 180) - " +
-				"(" + req.query.lon + " * PI() / 180)) + sin((" + req.query.lat + 
-				" * PI() / 180)) * sin((poi.latitud * PI() / 180)) )) < '" + req.query.dist + "'"
+				"(6371 * acos( cos((" + req.query.lat + " * 3.14159265 / 180)) * " +
+				"cos((latitud * 3.14159265 / 180)) * cos((longitud * 3.14159265 / 180) - " +
+				"(" + req.query.lon + " * 3.14159265 / 180)) + sin((" + req.query.lat + 
+				" * 3.14159265 / 180)) * sin((latitud * 3.14159265 / 180)) )) < '" + req.query.dist + "'"
 		).then(function (pois) {
 			res.json({"api_pfc" :pois});
 		}).catch(function (err) {
