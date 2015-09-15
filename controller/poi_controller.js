@@ -6,7 +6,7 @@ exports.pois_by_location = function(req, res) {
 		req.query.lon && isADecimal(req.query.lon) &&
 		req.query.dist && isADecimal(req.query.dist)) {
 
-		sequelize.query(
+		models.sequelize.query(
 			"SELECT * " +
 			"FROM poi " +
 			"WHERE " +
@@ -92,3 +92,11 @@ exports.destroy = function(req, res) {
 	}).catch(function(error){next(error)});
 */
 };
+
+
+/**
+ * Método para validar los valores numéricos pasados en URL
+ */
+function isADecimal(n) {
+  return !isNaN(parseFloat(n)) && isFinite(n);
+}
