@@ -4,16 +4,17 @@ if (!global.hasOwnProperty('db')) {
   var Sequelize = require('sequelize')
     , sequelize = null;
 
-  if (process.env.HEROKU_POSTGRESQL_BRONZE_URL) {
+  if (process.env.DATABASE_URL) {
     // the application is executed on Heroku ... use the postgres database
     var url = process.env.DATABASE_URL.match(/(.*)\:\/\/(.*?)\:(.*)@(.*)\:(.*)\/(.*)/);
 
-    sequelize = new Sequelize(process.env.HEROKU_POSTGRESQL_BRONZE_URL, {
+    sequelize = new Sequelize(process.env.DATABASE_URL, {
       dialect:  url[1],
       protocol: url[1],
       port:     url[5],
-      host:     url[4],
-      logging:  true //false
+      host:     url[4]
+      //,
+      //logging:  true //false
     })
   } else {
     // the application is executed on the local machine ... use mysql
