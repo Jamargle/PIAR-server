@@ -7,13 +7,15 @@ exports.pois_by_location = function(req, res) {
 		req.query.dist && isADecimal(req.query.dist)) {
 
 		models.sequelize.query(
-			"SELECT * " +
+		/*	"SELECT * " +
 			"FROM poi " +
 			"WHERE " +
 				"(6371 * acos( cos((" + req.query.lat + " * PI() / 180)) * " +
 				"cos((latitud * PI() / 180)) * cos((longitud * PI() / 180) - " +
 				"(" + req.query.lon + " * PI() / 180)) + sin((" + req.query.lat + 
 				" * PI() / 180)) * sin((latitud * PI() / 180)) )) < '" + req.query.dist + "'"
+*/
+	"SELECT * FROM poi"
 		).then(function (pois) {
 			res.json({"api_pfc" :pois});
 		}).catch(function (err) {
