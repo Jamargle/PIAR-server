@@ -1,6 +1,8 @@
+var path = require('path');
+
 if (!global.hasOwnProperty('db')) {
   var Sequelize = require('sequelize')
-    , sequelize = null
+    , sequelize = null;
 
   if (process.env.HEROKU_POSTGRESQL_BRONZE_URL) {
     // the application is executed on Heroku ... use the postgres database
@@ -15,13 +17,15 @@ if (!global.hasOwnProperty('db')) {
     })
   } else {
     // the application is executed on the local machine ... use mysql
-    sequelize = new Sequelize('example-app-db', 'root', null)
+    sequelize = new Sequelize("basededatosespacial", "root", "mysql1234");
   }
+  // Importar definicion de la tabla Poi
+  var poi_path = path.join(__dirname,'poi.js');
 
   global.db = {
     Sequelize: Sequelize,
     sequelize: sequelize,
-    User:      sequelize.import(__dirname + '/user') 
+    Poi:      sequelize.import(poi_path) 
     // add your other models here
   }
 
