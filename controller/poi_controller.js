@@ -18,7 +18,7 @@ exports.pois_by_location = function(req, res) {
 			res.json({"api_pfc" :pois});
 		}).catch(function (err) {
 			//console.log(err);
-			res.send("User not found");
+			res.send("User not found"+err);
 		});
 	}else{
 		res.send("404, Bad URL");
@@ -32,7 +32,7 @@ exports.show_all = function(req, res) {
 		res.json({"api_pfc" :pois});
 	}).catch(function (err) {
 		//console.log(err);
-		res.send("User not found");
+		res.send("User not found"+err);
 	});
 };
 
