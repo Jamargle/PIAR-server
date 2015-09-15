@@ -77,7 +77,7 @@ module.exports = function(sequelize, DataTypes) {
 			defaultValue: 0
 		}
 	}, {
-		tableName: 'poi',
+		tableName: 'Poi',
 		timestamps: false
 	});
 
