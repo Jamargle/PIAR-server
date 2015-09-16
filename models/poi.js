@@ -1,77 +1,77 @@
 module.exports = function(sequelize, DataTypes) {
 	return sequelize.define('poi', {
-		ID_Poi: { 
+		id_poi: { 
 			type: DataTypes.INTEGER.UNSIGNED,
 			allowNull: false,
 			autoIncrement: true,
 			primaryKey: true
 		},
-		Usuario_ID_usuario: {
+		usuario_id_usuario: {
 			type: DataTypes.INTEGER.UNSIGNED,
 			allowNull: false,
 			defaultValue: 1
 		},
-		Nombre: {
+		nombre: {
 			type: DataTypes.STRING,
 			allowNull: false
 		},
-		Multimedia: {
+		multimedia: {
 			type: DataTypes.STRING,
 			allowNull: false
 		},
-		Altitud: {
+		altitud: {
 			type: DataTypes.DECIMAL(5,1),
 			allowNull: false
 		},
-		Latitud: {
+		latitud: {
 			type: DataTypes.FLOAT,
 			allowNull: false
 		},
-		Longitud: {
+		longitud: {
 			type: DataTypes.FLOAT,
 			allowNull: false
 		},
-		Categoria: {
+		categoria: {
 			type: DataTypes.STRING,
 			allowNull: false
 		},
-		Subcategoria: {
+		subcategoria: {
 			type: DataTypes.STRING,
 			allowNull: true
 		},
-		Deporte_principal: {
+		deporte_principal: {
 			type: DataTypes.STRING,
 			allowNull: true
 		},
-		Descripcion: {
+		descripcion: {
 			type: DataTypes.STRING,
 			allowNull: true
 		},
-		Sitio_web: {
+		sitio_web: {
 			type: DataTypes.STRING,
 			allowNull: true
 		},
-		Horario_apertura: {
+		horario_apertura: {
 			type: DataTypes.STRING,
 			allowNull: true,
 			defaultValue: '00:00'
 		},
-		Horario_cierre: {
+		horario_cierre: {
 			type: DataTypes.STRING,
 			allowNull: true,
 			defaultValue: '00:00'
 		},
-		Edad_minima: {
+		edad_minima: {
 			type: DataTypes.INTEGER.UNSIGNED,
 			allowNull: true,
 			defaultValue: 0
 		},
-		Edad_maxima: {
+		edad_maxima: {
 			type: DataTypes.INTEGER.UNSIGNED,
 			allowNull: true,
 			defaultValue: 0
 		},
-		Precio: {
+		precio: {
 			type: DataTypes.FLOAT.UNSIGNED,
 			allowNull: true,
 			defaultValue: 0
