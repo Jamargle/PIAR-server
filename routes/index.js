@@ -5,12 +5,12 @@ var poisController = require('../controller/poi_controller');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+  res.render('index', {errors: []});
 });
 
 
 //==========================================
-// Rutas disponibles
+// Rutas disponibles para la API REST
 //==========================================
 
 //Queries

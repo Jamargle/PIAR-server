@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"><title>PIAR website</title>
+  <link href='https://fonts.googleapis.com/css?family=Roboto:400,400italic,700' rel='stylesheet' type='text/css'>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+  <link rel='stylesheet' type='text/css' media='only screen and (min-width: 860px)' href='/stylesheets/wide.css' />
+  <link rel='stylesheet' type='text/css' media='only screen and (max-width: 860px)' href='/stylesheets/smartphone.css' />
+</head> 
+
+
+<body>
+  	<header id="h1">
+    	<h1>PIAR. Puntos de Interés con Realidad Aumentada</h1>
+  	</header>
+
+	<section class="main" id="s1">
+	  <nav class="main" id="n1" role="navigation">
+	    <span>menu 1</span>
+	    <span>menu 2</span>
+	    <span>menu 3</span>
+	    <span>menu 4</span>
+	  </nav>
+
+	  <% if (undefined !== errors && errors.length) { %>
+	    <span id='ErrorMsgs'>
+	      Corregir errores:<br/>
+	      <% for (var i in errors) { %>
+	      <span> <%= errors[i].message %> </span><br/>
+	      <% } %>
+	    </span>
+	  <% } %>
+
+	  
+	</section>
+
+    <footer id="f1">
+      <p>¿Que es un Quiz?</p>
+      <p>MyQuiz en Github</p>
+    </footer>
+</body> 
+</html>
