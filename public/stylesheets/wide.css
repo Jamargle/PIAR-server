@@ -1,0 +1,17 @@
+
+#headerLinks {
+	min-width: 850px;
+}
+
+#logo {
+	padding-right: 30%;
+}
+
+#articles {
+	width: 80%;
+}
+
+article ul {
+	width: 500px;
+	margin: auto;
+}

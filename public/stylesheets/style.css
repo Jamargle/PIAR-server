@@ -14,7 +14,6 @@ header {
 
 #headerLinks {
 	display: block;
-	min-width: 850px;
 	vertical-align: middle;
 }
 
@@ -24,7 +23,6 @@ header {
 }
 
 #logo {
-	padding-right: 30%;
 	display: inline-block;
 }
 
@@ -85,7 +83,6 @@ nav span a:hover {
 
 #articles {
 	margin: auto;
-	width: 80%;
 }
 
 article {
@@ -108,8 +105,6 @@ article p {
 }
 
 article ul {
-	width: 500px;
-	margin: auto;
 	text-align: left;
 }
 
