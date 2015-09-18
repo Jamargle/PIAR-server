@@ -17,6 +17,11 @@ header {
 	vertical-align: middle;
 }
 
+#al_mapa {
+	float:right;
+	padding: 20px;
+}
+
 #logo img {
 	width: 100px;
 	height: 100px;

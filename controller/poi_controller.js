@@ -61,21 +61,63 @@ exports.show_all = function(req, res) {
 };
 
 
+//See the documentation below for more details.
+//https://developers.google.com/maps/documentation/javascript/reference
+
+// GET /map
+exports.showMap = function(req, res) {
+	res.render('map', {title: 'Mapa de PoI'});
+
+/*	
+	pruebaPois = ["Cambil", "Madrid", "Jaén"];
+
+	// Calls the initializeLiveMap() function when the page loads
+	window.addEventListener('load', function() {
+		console.log("windows!... a inicializara el mapa!");
+		initializeMap(pruebaPois);
+	});	
+
+	// Vanilla JS way to listen for resizing of the window
+	// and adjust map bounds
+
+	window.addEventListener('resize', function(e) {
+	  //Make sure the map bounds get updated on page resize
+	  map.fitBounds(mapBounds);
+	});
+*/
+}
+
 //********************************
+// GET /poi/new
+exports.new = function(req, res) {
+	var poi = models.Poi.build({
+		//Show a form with default values for a poi
+  		/*
+  		pregunta: "Pregunta", 
+    	respuesta: "Respuesta",
+    	tema:"Otro"
+    	*/
+	});
+
+	res.render('poi/new', {newPoi: poi, errors: []});
+};
+
+
+
 // POST /create_poi
 exports.create = function(req, res) {
+	var poi = models.Poi.build( req.body.poi );
 
-	/*  var quiz = models.Quiz.build( req.body.quiz );
-
-	var err = quiz.validate();
+	var err = poi.validate();
 	if (err){
-		res.render('quizes/new', {quiz: quiz, errors: err.errors});
+		res.render('poi/new', {newPoi: poi, errors: err.errors});
 	}else{
-		quiz // save: guarda en DB campos pregunta y respuesta de quiz
-			.save({fields: ["pregunta", "respuesta", "tema"]})
-			.then( function(){ res.redirect('/quizes')}) 
+		poi.save({fields: // save poi in DB
+/*###############*/				["pregunta", "respuesta", "tema"]
+			}).then( function(){ 
+				res.redirect('/map');
+			}); 
 	}
-  */
 };
 
 
