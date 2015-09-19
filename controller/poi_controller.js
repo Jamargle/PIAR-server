@@ -66,7 +66,7 @@ exports.show_all = function(req, res) {
 
 // GET /map
 exports.showMap = function(req, res) {
-	res.render('map', {title: 'Mapa de PoI'});
+	res.render('map2', { layout: false});
 
 /*	
 	pruebaPois = ["Cambil", "Madrid", "Jaén"];

@@ -1,1 +1,12 @@
-<div id="poi_map"><a href="/">Volver</a></div>
+<a href="/">Volver</a>
+
+<div id="poi_map" style="height:100%;"></div>
+<script>
+	var map;
+
+	function initMap() {
+		map = new google.maps.Map(document.getElementById('poi_map'));
+	}
+
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?callback=initMap" async defer></script>

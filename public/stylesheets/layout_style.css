@@ -55,6 +55,22 @@ footer {
 	box-shadow: inset 0px 4px 10px 0px rgba(0,0,0,0.5);
 }
 
+#poi_map {
+	height: 100%;
+}
+
+#body_layout {
+	width: 100%;
+}
+
+#content {
+	padding: 20px;
+}
+#div_map {
+	height: 400px;
+	width: 100%;
+}
+
 .bloquePie {
 	margin: auto;
 	display: inline-block;

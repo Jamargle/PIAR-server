@@ -34,12 +34,35 @@
 			<a id="logo" href="/" title="Ir a inicio">
 				<img src="https://lh3.googleusercontent.com/B5kG2kOX2HtQJPCY8ilXPyCK0CaBwMHrh7hd1c3newXyzR0De1o7nz0di8EG9p4EPL4=w300-rw"></img>
 			</a>
-			<h1><%= title %></h1>
+			<h1>Mapa del poi 2</h1>
 		</header>
 
   	</div>
 
-  	<div id="body_layout"><%- body %></div>
+  	<div id="body_layout">
+  		<div id="content">
+			<a href="/">Volver</a>
+  		</div>
+		<div id="div_map">
+			<div id="poi_map">		</div>
+		</div>
+		<script>
+			var map;
+
+			function initMap() {
+				var latlng = new google.maps.LatLng(-34.397, 150.644);
+				var myOptions = {
+					zoom: 8,
+					center: latlng,
+					mapTypeId: google.maps.MapTypeId.ROADMAP
+				};
+
+				map = new google.maps.Map(document.getElementById('poi_map'), myOptions);
+			}
+
+		</script>
+		
+  	</div>
 
 	<footer>
 		<section class="bloquePie">
@@ -56,5 +79,6 @@
 			</div>
 		</section>
 	</footer>
+	<script src="https://maps.googleapis.com/maps/api/js?callback=initMap" async defer></script>
 </body>
 </html>
