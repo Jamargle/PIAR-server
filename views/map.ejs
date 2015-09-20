@@ -5,18 +5,23 @@
 <div id="div_map">
 	<div id="poi_map">	</div>
 </div>
+
+<script src="js/mapUtils.js"></script>
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places"></script>
+
 <script>
-	var map;
+	var pruebaPois = ['Cambil', 'Jaén', 'Granada'];
+	/******** MAP ************/
+	// Calls the initializeLiveMap() function when the page loads
+	window.addEventListener('load', function() {
+		initializeMap(pruebaPois);
+	});
 
-	function initMap() {
-		var latlng = new google.maps.LatLng(-34.397, 150.644);
-		var myOptions = {
-			zoom: 8,
-			center: latlng,
-			mapTypeId: google.maps.MapTypeId.ROADMAP
-		};
-
-		map = new google.maps.Map(document.getElementById('poi_map'), myOptions);
-	}
+	// Vanilla JS way to listen for resizing of the window
+	// and adjust map bounds
+	window.addEventListener('resize', function(e) {
+		//Make sure the map bounds get updated on page resize
+		map.fitBounds(mapBounds);
+	});
 
 </script>
