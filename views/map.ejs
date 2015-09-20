@@ -1,12 +1,22 @@
-<a href="/">Volver</a>
 
-<div id="poi_map" style="height:100%;"></div>
+<div id="body_layout">
+	<a href="/">Volver</a>
+</div>
+<div id="div_map">
+	<div id="poi_map">	</div>
+</div>
 <script>
 	var map;
 
 	function initMap() {
-		map = new google.maps.Map(document.getElementById('poi_map'));
+		var latlng = new google.maps.LatLng(-34.397, 150.644);
+		var myOptions = {
+			zoom: 8,
+			center: latlng,
+			mapTypeId: google.maps.MapTypeId.ROADMAP
+		};
+
+		map = new google.maps.Map(document.getElementById('poi_map'), myOptions);
 	}
 
 </script>
-<script src="https://maps.googleapis.com/maps/api/js?callback=initMap" async defer></script>

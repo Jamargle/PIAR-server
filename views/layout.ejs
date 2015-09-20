@@ -11,7 +11,7 @@
 
   
   <link rel='stylesheet' type='text/css' media='only screen and (min-width: 600px)' href='/stylesheets/layout_wide.css' />
-<!--  <link rel='stylesheet' type='text/css' media='only screen and (max-width: 600px)' href='/stylesheets/layout_smartphone.css' />  -->
+  <link rel='stylesheet' type='text/css' media='only screen and (max-width: 600px)' href='/stylesheets/layout_smartphone.css' />
 
 
   <script src="/js/jQuery.js"></script>
@@ -39,7 +39,9 @@
 
   	</div>
 
-  	<div id="body_layout"><%- body %></div>
+  	<div id="content">
+  		<%- body %>
+  	</div>
 
 	<footer>
 		<section class="bloquePie">
@@ -56,5 +58,6 @@
 			</div>
 		</section>
 	</footer>
+	<script src="https://maps.googleapis.com/maps/api/js?callback=initMap" async defer></script>
 </body>
 </html>
