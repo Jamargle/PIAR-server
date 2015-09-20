@@ -38,7 +38,16 @@
 		</header>
 
   	</div>
-
+	<section id="errors">
+		<% if (errors !== undefined && errors.length) { %>
+			<span id='ErrorMsgs'>
+			Corregir errores:<br/>
+			<% for (var i in errors) { %>
+			<span> <%= errors[i].message %> </span><br/>
+			<% } %>
+			</span>
+		<% } %>
+	</section>
   	<div id="content">
   		<%- body %>
   	</div>

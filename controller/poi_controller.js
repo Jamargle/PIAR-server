@@ -67,55 +67,90 @@ exports.show_all = function(req, res) {
 // GET /map
 exports.showMap = function(req, res) {
 	res.render('map', { title: 'Mapa de pois'});
-
-/*	
-	pruebaPois = ["Cambil", "Madrid", "Jaén"];
-
-	// Calls the initializeLiveMap() function when the page loads
-	window.addEventListener('load', function() {
-		console.log("windows!... a inicializara el mapa!");
-		initializeMap(pruebaPois);
-	});	
-
-	// Vanilla JS way to listen for resizing of the window
-	// and adjust map bounds
-
-	window.addEventListener('resize', function(e) {
-	  //Make sure the map bounds get updated on page resize
-	  map.fitBounds(mapBounds);
-	});
-*/
 }
 
 //********************************
-// GET /poi/new
+// GET /new
 exports.new = function(req, res) {
 	var poi = models.Poi.build({
 		//Show a form with default values for a poi
-  		/*
-  		pregunta: "Pregunta", 
-    	respuesta: "Respuesta",
-    	tema:"Otro"
-    	*/
+  		id_poi: null,
+  		usuario_id_usuario: 5,
+  		
+  		nombre: 'Nombre del PI',
+  		multimedia: 'URL de la imagen',
+  		altitud: 0,
+  		latitud: 0,
+  		longitud: 0,
+  		categoria: 'Categoria',
+  		subcategoria: null,
+  		deporte_principal: null,
+  		descripcion: 'Descripcion del PI',
+  		sitio_web: 'Web del PI',
+  		horario_apertura: null,
+  		horario_cierre: null,
+		edad_minima: null,
+		edad_maxima: null,
+		precio: null
 	});
 
-	res.render('poi/new', {newPoi: poi, errors: []});
+	res.render('new', {
+		title: 'Crea un nuevo PI', 
+		newPoi: poi, 
+		errors: []
+	});
 };
 
 
 
 // POST /create_poi
 exports.create = function(req, res) {
-	var poi = models.Poi.build( req.body.poi );
+	var poi = models.Poi.build( req.body.newPoi );
+
+
+console.log("id:"+req.body.newPoi.id_poi+" y para poi:" + poi.id_poi + "\n");
+console.log("id_usuario:"+req.body.newPoi.usuario_id_usuario+" y para poi:" + poi.usuario_id_usuario + "\n");
+console.log("nombre:"+req.body.newPoi.nombre+" y para poi:" + poi.nombre + "\n");
+console.log("multimedia:"+req.body.newPoi.multimedia+" y para poi:" + poi.multimedia + "\n");
+console.log("altitud:"+req.body.newPoi.altitud+" y para poi:" + poi.altitud + "\n");
+console.log("latitud:"+req.body.newPoi.latitud+" y para poi:" + poi.latitud + "\n");
+console.log("longitud:"+req.body.newPoi.longitud+" y para poi:" + poi.longitud + "\n");
+console.log("categoria:"+req.body.newPoi.categoria+" y para poi:" + poi.categoria + "\n");
+console.log("subcategoria:"+req.body.newPoi.subcategoria+" y para poi:" + poi.subcategoria + "\n");
+console.log("deporte_principal:"+req.body.newPoi.deporte_principal+" y para poi:" + poi.deporte_principal + "\n");
+console.log("descripcion:"+req.body.newPoi.descripcion+" y para poi:" + poi.descripcion + "\n");
+console.log("sitio_web:"+req.body.newPoi.sitio_web+" y para poi:" + poi.sitio_web + "\n");
+console.log("horario_apertura:"+req.body.newPoi.horario_apertura+" y para poi:" + poi.horario_apertura + "\n");
+console.log("horario_cierre:"+req.body.newPoi.horario_cierre+" y para poi:" + poi.horario_cierre + "\n");
+console.log("edad_minima:"+req.body.newPoi.edad_minima+" y para poi:" + poi.edad_minima + "\n");
+console.log("edad_maxima:"+req.body.newPoi.edad_maxima+" y para poi:" + poi.edad_maxima + "\n");
+console.log("precio:"+req.body.newPoi.precio+" y para poi:" + poi.precio + "\n");
+	
+	poi.altitud = parseFloat(req.body.newPoi.altitud).toFixed(1);
 
 	var err = poi.validate();
-	if (err){
-		res.render('poi/new', {newPoi: poi, errors: err.errors});
+
+	if (err !== undefined) {
+console.log("1 error:" + err + " y errors:" + err.errors+"\n\n");		
+		res.render('new', {newPoi: poi, title: 'Crea un nuevo PI', errors: err.errors});
 	}else{
+console.log("2 a guardar:" + poi.nombre+"\n\n");
 		poi.save({fields: // save poi in DB
-/*###############*/				["pregunta", "respuesta", "tema"]
+			[ 
+			"id_usuario",
+			"nombre",
+			"multimedia", 
+			"altitud",
+			"latitud", 
+			"longitud", 
+			"categoria",
+			"descripcion", 
+			"sitio_web",
+			"precio"
+			]
 			}).then( function(){ 
-				res.redirect('/map');
+				console.log("insertado PI con exito");
+				res.redirect('/');
 			}); 
 	}
 };

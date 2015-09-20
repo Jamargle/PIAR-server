@@ -1,0 +1,129 @@
+
+<input type="hidden" 
+	id="id" 
+	name="newPoi[id_poi]" 
+	value="<%= newPoi.id_poi %>"><br>
+
+<input type="hidden" 
+	id="usuario_id_usuario" 
+	name="newPoi[usuario_id_usuario]" 
+	value="<%= newPoi.usuario_id_usuario %>"><br>
+
+
+<label for="nombre">Nombre: </label>
+<input type="text" 
+	id="nombre" 
+	name="newPoi[nombre]" 
+	value="<%= newPoi.nombre %>"
+	onblur="if (this.value == '') {this.value = '<%= newPoi.nombre %>';}"
+	onfocus="if (this.value == '<%= newPoi.nombre %>') {this.value = '';}" ><br>
+
+<label for="image">Imagen: </label>
+<input type="text" 
+	id="image" 
+	name="newPoi[multimedia]" 
+	value="<%= newPoi.multimedia %>"
+	onblur="if (this.value == '') {this.value = '<%= newPoi.multimedia %>';}"
+	onfocus="if (this.value == '<%= newPoi.multimedia %>') {this.value = '';}" ><br>
+
+<label for="altitude">Altitud: </label>
+<input type="number" step="0.1" min="1" max="9000"
+	id="altitude" 
+	name="newPoi[altitud]" 
+	value="<%= newPoi.altitud %>"
+	onblur="if (this.value == '') {this.value = '<%= newPoi.altitud %>';}"
+	onfocus="if (this.value == '<%= newPoi.altitud %>') {this.value = '';}" ><br>
+
+<label for="latitude">Latitud: </label>
+<input type="number" step="0.0000001"
+	id="latitude" 
+	name="newPoi[latitud]" 
+	value="<%= newPoi.latitud %>"
+	onblur="if (this.value == '') {this.value = '<%= newPoi.latitud %>';}"
+	onfocus="if (this.value == '<%= newPoi.latitud %>') {this.value = '';}" ><br>
+
+<label for="longitude">Longitud: </label>
+<input type="number" step="0.0000001"
+	id="longitude" 
+	name="newPoi[longitud]" 
+	value="<%= newPoi.longitud %>"
+	onblur="if (this.value == '') {this.value = '<%= newPoi.longitud %>';}"
+	onfocus="if (this.value == '<%= newPoi.longitud %>') {this.value = '';}" ><br>
+
+<label for="categ">Categoría: </label>
+<input type="text" 
+	id="categ" 
+	name="newPoi[categoria]" 
+	value="<%= newPoi.categoria %>"
+	onblur="if (this.value == '') {this.value = '<%= newPoi.categoria %>';}"
+	onfocus="if (this.value == '<%= newPoi.categoria %>') {this.value = '';}" ><br>
+
+
+<input type="hidden" 
+	id="subcateg" 
+	name="newPoi[subcategoria]" 
+	value="<%= newPoi.subcategoria %>">
+
+<input type="hidden" 
+	id="deporte" 
+	name="newPoi[deporte_principal]" 
+	value="<%= newPoi.deporte_principal %>">
+
+<!-- 
+<label for="subcateg">Subcategoría: </label>
+<input type="text" 
+	id="subcateg" 
+	name="newPoi[subcategoria]" 
+	value="<%= newPoi.subcategoria %>"
+	onblur="if (this.value == '') {this.value = '<%= newPoi.subcategoria %>';}"
+	onfocus="if (this.value == '<%= newPoi.subcategoria %>') {this.value = '';}" ><br>
+
+<label for="deporte">Deporte principal (si lo hay): </label>
+<input type="text" 
+	id="deporte" 
+	name="newPoi[deporte_principal]" 
+	value="<%= newPoi.deporte_principal %>"
+	onblur="if (this.value == '') {this.value = '<%= newPoi.deporte_principal %>';}"
+	onfocus="if (this.value == '<%= newPoi.deporte_principal %>') {this.value = '';}" ><br>
+-->
+
+<label for="description">Descripción: </label>
+<input type="text" 
+	id="description" 
+	name="newPoi[descripcion]" 
+	value="<%= newPoi.descripcion %>"
+	onblur="if (this.value == '') {this.value = '<%= newPoi.descripcion %>';}"
+	onfocus="if (this.value == '<%= newPoi.descripcion %>') {this.value = '';}" ><br>
+
+<label for="website">Sitio web: </label>
+<input type="text" 
+	id="website" 
+	name="newPoi[sitio_web]" 
+	value="<%= newPoi.sitio_web %>"
+	onblur="if (this.value == '') {this.value = '<%= newPoi.sitio_web %>';}"
+	onfocus="if (this.value == '<%= newPoi.sitio_web %>') {this.value = '';}" ><br>
+
+<input type="hidden" 
+	id="apert" 
+	name="newPoi[horario_apertura]" 
+	value="<%= newPoi.horario_apertura %>">
+<input type="hidden" 
+	id="cierre" 
+	name="newPoi[horario_cierre]" 
+	value="<%= newPoi.horario_cierre %>">
+<input type="hidden" 
+	id="edad_minima" 
+	name="newPoi[edad_minima]" 
+	value="<%= newPoi.edad_minima %>">
+<input type="hidden" 
+	id="edad_maxima" 
+	name="newPoi[edad_maxima]" 
+	value="<%= newPoi.edad_maxima %>">
+<input type="hidden" 
+	id="precio" 
+	name="newPoi[precio]" 
+	value="<%= newPoi.precio %>">
+
+<br><br>
+<input type="submit" value="Guardar">
+<a href="/"><button type="button">Cancelar</button></a>

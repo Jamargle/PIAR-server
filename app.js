@@ -19,7 +19,7 @@ app.use(partials());    //Para poder construir páginas con layouts determinados
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -40,8 +40,10 @@ if (app.get('env') === 'development') {
   app.use(function(err, req, res, next) {
     res.status(err.status || 500);
     res.render('error', {
+      title: 'Ha ocurrido un error',
       message: err.message,
-      error: err
+      error: err,
+      errors: []
     });
   });
 }
@@ -51,8 +53,10 @@ if (app.get('env') === 'development') {
 app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error', {
+    title: 'Ha ocurrido un error',
     message: err.message,
-    error: {}
+    error: {},
+    errors: []
   });
 });
 

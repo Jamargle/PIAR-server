@@ -16,6 +16,7 @@ function initializeMap(locations) {
 	var latlng = new google.maps.LatLng(37.6757925,-3.5652065);
 	var myOptions = {
 			center: latlng,
+			zoom: 12,
 			mapTypeId: google.maps.MapTypeId.ROADMAP
 		};
 
@@ -38,7 +39,7 @@ function initializeMap(locations) {
 		var lat = placeData.geometry.location.lat();  // latitude from the place service
 		var lon = placeData.geometry.location.lng();  // longitude from the place service
 		var name = placeData.formatted_address;   // name of the place from the place service
-		var bounds = window.mapBounds;            // current boundaries of the map window
+		//var bounds = window.mapBounds;            // current boundaries of the map window
 
 		// marker is an object with additional data about the pin for a single location
 		var marker = new google.maps.Marker({
@@ -61,11 +62,11 @@ function initializeMap(locations) {
 
 		// this is where the pin actually gets added to the map.
 		// bounds.extend() takes in a map location object
-		bounds.extend(new google.maps.LatLng(lat, lon));
+		//bounds.extend(new google.maps.LatLng(lat, lon));
 		// fit the map to the new marker
-		map.fitBounds(bounds);
+		//map.fitBounds(bounds);
 		// center the map
-		map.setCenter(bounds.getCenter());
+		//map.setCenter(bounds.getCenter());
 	}
 
 	/**
