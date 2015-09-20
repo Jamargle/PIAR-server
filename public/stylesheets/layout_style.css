@@ -16,19 +16,13 @@ header {
 	vertical-align: middle;
 }
 
-#logo img {
-	width: 70px;
-	height: 70px;
-	padding: 20px;
-}
 
 #logo {
 	display: inline-block;
 }
 
-h1 {
+#header_bar h1 {
 	display: inline-block;
-	font-size: 3em;
 	color: #FFC107;
 	vertical-align: top;
 }
@@ -59,16 +53,12 @@ footer {
 	height: 100%;
 }
 
-#body_layout {
+#content {
 	width: 100%;
 }
 
-#content {
-	padding: 20px;
-}
 #div_map {
 	height: 400px;
-	width: 100%;
 }
 
 .bloquePie {

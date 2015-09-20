@@ -1,0 +1,23 @@
+
+#logo img {
+	width: 60px;
+	height: 60px;
+	padding: 10px;
+}
+
+#header_bar h1 {
+	margin-left: 5%;
+	margin-right: 5%;
+	font-size: 2em;
+}
+
+#div_map {
+	height: 800px;
+	width: 90%;
+	
+}
+
+#div_map {
+	width: 90%;
+	padding: 20px;
+}
