@@ -21,7 +21,7 @@ module.exports = function(sequelize, DataTypes) {
 			validate: { notEmpty: {msg: "-> Introduce la URL de una imagen"}}
 		},
 		altitud: {
-			type: DataTypes.DECIMAL(5,1),
+			type: DataTypes.FLOAT,
 			allowNull: false,
 			validate: { notEmpty: {msg: "-> Falta la altitud del PI"}}
 		},

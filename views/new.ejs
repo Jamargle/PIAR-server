@@ -1,6 +1,6 @@
 <div id="body_layout">
 	<a href="/">Volver</a>
-	<form method="post" action="/create_poi">
+	<form method="post" action="/create_poi" onsubmit="return validatePoi();" onchange="return validatePoi();">
 		<% include form.ejs %>
 	</form>
 </div>

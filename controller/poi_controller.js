@@ -66,7 +66,7 @@ exports.show_all = function(req, res) {
 
 // GET /map
 exports.showMap = function(req, res) {
-	res.render('map', { title: 'Mapa de pois'});
+	res.render('map', { title: 'Mapa de pois', errors: []});
 }
 
 //********************************
@@ -126,18 +126,19 @@ console.log("edad_minima:"+req.body.newPoi.edad_minima+" y para poi:" + poi.edad
 console.log("edad_maxima:"+req.body.newPoi.edad_maxima+" y para poi:" + poi.edad_maxima + "\n");
 console.log("precio:"+req.body.newPoi.precio+" y para poi:" + poi.precio + "\n");
 	
-	poi.altitud = parseFloat(req.body.newPoi.altitud).toFixed(1);
+	
+poi.altitud = parseFloat(req.body.newPoi.altitud).toFixed(1);
+//	var err = poi.validate();
 
-	var err = poi.validate();
 
-	if (err !== undefined) {
-console.log("1 error:" + err + " y errors:" + err.errors+"\n\n");		
-		res.render('new', {newPoi: poi, title: 'Crea un nuevo PI', errors: err.errors});
-	}else{
+//	if (err !== undefined) {
+//console.log("1 error:" + err + " y errors:" + err.errors+"\n\n");		
+//		res.render('new', {newPoi: poi, title: 'Crea un nuevo PI', errors: err.errors});
+//	}else{
 console.log("2 a guardar:" + poi.nombre+"\n\n");
 		poi.save({fields: // save poi in DB
 			[ 
-			"id_usuario",
+			"usuario_id_usuario",
 			"nombre",
 			"multimedia", 
 			"altitud",
@@ -145,14 +146,13 @@ console.log("2 a guardar:" + poi.nombre+"\n\n");
 			"longitud", 
 			"categoria",
 			"descripcion", 
-			"sitio_web",
-			"precio"
+			"sitio_web"
 			]
 			}).then( function(){ 
 				console.log("insertado PI con exito");
 				res.redirect('/');
 			}); 
-	}
+//	}
 };
 
 
@@ -196,8 +196,97 @@ exports.destroy = function(req, res) {
 
 
 /**
- * Método para validar los valores numéricos pasados en URL
+ * Validation for decimal numbers (used for numbers from URLs)
  */
 function isADecimal(n) {
   return !isNaN(parseFloat(n)) && isFinite(n);
+}
+
+
+
+/**
+ * Validation method for the form fields used to create and edit points
+ */
+var validatePoi = function() {
+	//id_poi -> Validation not needed because it's null and then autoincremented in DB
+	//usuario_id_usuario -> It's always 5 for pois created by this web service, it goes as hidden
+	var usuario_id_usuario = document.getElementById('usuario_id_usuario').value;
+	if (usuario_id_usuario !== 5) {
+		console.log("usuario_id_usuario NO es correcto:" + poi.usuario_id_usuario);
+		return false;
+	}
+
+	//nombre -> It can't be null nor empty nor 'Nombre del PI'
+	var nombre = document.getElementById('nombre').value;
+	if (nombre === null || nombre == '' || nombre == 'Nombre del PI' || nombre == 'PI name') {
+		console.log("en nombre NO es correcto:" + nombre);
+		document.getElementById('nombre').style.borderColor = 'red';
+		return false;
+	}
+
+	//multimedia -> It can't be null nor empty nor 'URL de la imagen'
+	var multimedia = document.getElementById('image').value;
+	if (multimedia === null || multimedia == '' || multimedia == 'URL de la imagen' || multimedia == 'URL of image') {
+		console.log("URL de la imagen NO es correcto:" + multimedia);
+		document.getElementById('image').style.borderColor = 'red';
+		return false;
+	}
+
+	//altitud -> It can't be null nor empty nor 0
+	var altitude = document.getElementById('altitude').value;
+	if (altitude === null || altitude == '' || altitude == 0) {
+		console.log("La altitud NO es correcta:" + altitude);
+		document.getElementById('altitude').style.borderColor = 'red';
+		return false;
+	}
+
+	//latitud -> It can't be null nor empty nor 0
+	var latitude = document.getElementById('latitude').value;
+	if (latitude === null || latitude == '' || latitude == 0) {
+		console.log("La latitud NO es correcta:" + latitude);
+		document.getElementById('latitude').style.borderColor = 'red';
+		return false;
+	}
+
+	//longitud -> It can't be null nor empty nor 0
+	var longitude = document.getElementById('longitude').value;
+	if (longitude === null || longitude == '' || longitude == 0) {
+		console.log("La longitud NO es correcta:" + longitude);
+		document.getElementById('longitude').style.borderColor = 'red';
+		return false;
+	}
+
+	//categoria -> It can't be null nor empty nor 'Categoria'
+	var categoria = document.getElementById('categ').value;
+	if (categoria === null || categoria == '' || categoria == 'Categoria') {
+		console.log("La categoria NO es correcta:" + categoria);
+		document.getElementById('categ').style.borderColor = 'red';
+		return false;
+	}
+
+	//subcategoria -> At the moment we don't use this field. It goes as hidden with null
+	//deporte_principal -> At the moment we don't use this field. It goes as hidden with null
+	
+	//descripcion -> It can be null so it can be empty but nor 'Descripcion del PI'.
+	var description = document.getElementById('description').value;
+	if (description === null || description == '' || description == 'Descripcion del PI' || description == 'PI description') {
+		console.log("La descripcion NO es correcta:" + description);
+		document.getElementById('description').style.borderColor = 'red';
+		return false;
+	}
+
+	//sitio_web -> It can be null so it can be empty but nor 'Web del PI'. Furthermore, it has to be a url
+	var website = document.getElementById('website').value;
+	if (website === null || website == '' || website == 'Web del PI' || website == 'PI website') {
+		console.log("La descripcion NO es correcta:" + website);
+		document.getElementById('website').style.borderColor = 'red';
+		return false;
+	}
+
+	//horario_apertura -> At the moment we don't use this field. It goes as hidden with null
+	//horario_cierre -> At the moment we don't use this field. It goes as hidden with null
+	//edad_minima -> At the moment we don't use this field. It goes as hidden with null
+	//edad_maxima -> At the moment we don't use this field. It goes as hidden with null
+	//precio -> At the moment we don't use this field. It goes as hidden with null
+
 }
