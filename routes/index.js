@@ -4,8 +4,8 @@ var router = express.Router();
 var poisController = require('../controller/poi_controller');
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', {errors: []});
+router.get('/', function(req, res) {
+  res.render('index', {errors: [], layout: false});
 });
 
 
@@ -21,10 +21,13 @@ router.get('/', function(req, res, next) {
 router.get('/all_pois', poisController.show_all);
 router.get('/pois_by_location/:position?', poisController.pois_by_location);
 
+router.get('/map', poisController.showMap);
+//GET new	-> Form for a new poi
 //POST create_poi	-> Create a new poi
 //GET pois/:id?/edit	-> Edits a poi
 //PUT pois/:id?	-> Update a poi
 //DELETE pois/:id?	-> Delete a poi
+router.get('/new', poisController.new);
 router.post('/create_poi', poisController.create);
 router.get('/pois/:id?/edit', poisController.edit);
 router.put('/pois/:id?', poisController.update);

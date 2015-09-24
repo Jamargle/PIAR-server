@@ -1,0 +1,16 @@
+
+<div id="div_map">
+	<div id="poi_map">	</div>
+</div>
+
+<script src="js/mapUtils.js"></script>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places"></script>
+
+<script>
+	var pruebaPois = ['Cambil', 'Jaén', 'Granada'];
+	/******** MAP ************/
+	// Calls the initializeLiveMap() function when the page loads
+	window.addEventListener('load', function() {
+		initializeMap(pruebaPois);
+	});
+</script>
