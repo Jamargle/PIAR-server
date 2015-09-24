@@ -114,7 +114,7 @@ function initializeMap() {
 	// Sets the boundaries of the map based on pin locations
 	window.mapBounds = new google.maps.LatLngBounds();
 
-	var urlApi = 'http://localhost:3000/pois_by_location/',
+	var urlApi = 'https://piarapp.herokuapp.com/pois_by_location/',
 	urlLat = '?lat=',
 	urlLng = '&lon=',
 	urlDist = '&dist=';
