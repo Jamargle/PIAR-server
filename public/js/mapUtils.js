@@ -6,17 +6,18 @@ See the documentation below for more details.
 https://developers.google.com/maps/documentation/javascript/reference
 */
 var map;    // declares a global map variable
+var pois = [];
 
 
 /**
  *Start here! initializeMap() is called when page is loaded.
  */
-function initializeMap(locations) {
+function initializeMap() {
 
 	var latlng = new google.maps.LatLng(37.6757925,-3.5652065);
 	var myOptions = {
 			center: latlng,
-			zoom: 12,
+			zoom: 14,
 			mapTypeId: google.maps.MapTypeId.ROADMAP
 		};
 
@@ -36,11 +37,15 @@ function initializeMap(locations) {
 	function createMapMarker(placeData) {
 
 		// The next lines save location data from the search result object to local variables
-		var lat = placeData.geometry.location.lat();  // latitude from the place service
-		var lon = placeData.geometry.location.lng();  // longitude from the place service
-		var name = placeData.formatted_address;   // name of the place from the place service
-		//var bounds = window.mapBounds;            // current boundaries of the map window
+		//var lat = ;  // latitude from the place service
+		//var lon = ;  // longitude from the place service
+		var myLatLng = {
+			lat: placeData.latitud, 
+			lng: placeData.longitud
+		};
 
+		var name = placeData.nombre;   // name of the place from the place service
+		//var bounds = window.mapBounds;            // current boundaries of the map window
 
 		var greenPin = "43A047";
 		var pinImage = new google.maps.MarkerImage("http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" + greenPin);
@@ -48,7 +53,7 @@ function initializeMap(locations) {
 		// marker is an object with additional data about the pin for a single location
 		var marker = new google.maps.Marker({
 			map: map,
-			position: placeData.geometry.location,
+			position: myLatLng,
 			title: name,
 			icon: pinImage
 		});
@@ -86,7 +91,7 @@ function initializeMap(locations) {
 	/**
 	 * pinPoster(locations) takes in the array of locations created by locationFinder()
 	 * and fires off Google place searches for each location
-	 */
+	 
 	function pinPoster(locations) {
 
 		// creates a Google place search service object. PlacesService does the work of
@@ -104,14 +109,41 @@ function initializeMap(locations) {
 			// function with the search results after each search.
 			service.textSearch(request, callback);
 		}
-	}
+	}*/
 
 	// Sets the boundaries of the map based on pin locations
 	window.mapBounds = new google.maps.LatLngBounds();
 
+	var urlApi = 'http://localhost:3000/pois_by_location/',
+	urlLat = '?lat=',
+	urlLng = '&lon=',
+	urlDist = '&dist=';
+	
+	// Get data from the server and show pois in the map
+	$.getJSON(urlApi + urlLat + map.getCenter().lat() + urlLng + map.getCenter().lng() + urlDist + '15', function(data) {
+		for (poi in data.api_pfc) {
+			pois.push(data.api_pfc[poi]);
+
+			createMapMarker(data.api_pfc[poi]);
+		}
+	});
+
+
+	google.maps.event.addListener(map, 'dragend', function(event) {
+		// Get updated data for the new center and show markers
+		$.getJSON(urlApi + 'all_pois', function(data) {
+			for (poi in data.api_pfc) {
+				pois.push(data.api_pfc[poi]);
+
+				createMapMarker(data.api_pfc[poi]);
+			}
+		});
+	});
+
+
 	// pinPoster(locations) creates pins on the map for each location in
 	// the locations array
-	pinPoster(locations);
+	//pinPoster(pois);
 
 
 	/****** New markers when clicking the map ********/
@@ -168,6 +200,6 @@ function initializeMap(locations) {
 				infowindow.setContent('Elevation service failed due to: ' + status);
 			}
 		});
-	});		
+	});
 
 }
