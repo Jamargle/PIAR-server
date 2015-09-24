@@ -107,7 +107,7 @@ exports.new = function(req, res) {
 exports.create = function(req, res) {
 	var poi = models.Poi.build( req.body.newPoi );
 
-
+/*
 console.log("id:"+req.body.newPoi.id_poi+" y para poi:" + poi.id_poi + "\n");
 console.log("id_usuario:"+req.body.newPoi.usuario_id_usuario+" y para poi:" + poi.usuario_id_usuario + "\n");
 console.log("nombre:"+req.body.newPoi.nombre+" y para poi:" + poi.nombre + "\n");
@@ -125,7 +125,7 @@ console.log("horario_cierre:"+req.body.newPoi.horario_cierre+" y para poi:" + po
 console.log("edad_minima:"+req.body.newPoi.edad_minima+" y para poi:" + poi.edad_minima + "\n");
 console.log("edad_maxima:"+req.body.newPoi.edad_maxima+" y para poi:" + poi.edad_maxima + "\n");
 console.log("precio:"+req.body.newPoi.precio+" y para poi:" + poi.precio + "\n");
-	
+*/	
 	
 poi.altitud = parseFloat(req.body.newPoi.altitud).toFixed(1);
 //	var err = poi.validate();

@@ -41,11 +41,16 @@ function initializeMap(locations) {
 		var name = placeData.formatted_address;   // name of the place from the place service
 		//var bounds = window.mapBounds;            // current boundaries of the map window
 
+
+		var greenPin = "43A047";
+		var pinImage = new google.maps.MarkerImage("http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" + greenPin);
+
 		// marker is an object with additional data about the pin for a single location
 		var marker = new google.maps.Marker({
 			map: map,
 			position: placeData.geometry.location,
-			title: name
+			title: name,
+			icon: pinImage
 		});
 
 		// infoWindows are the little helper windows that open when you click
@@ -55,7 +60,6 @@ function initializeMap(locations) {
 			content: name
 		});
 
-		// hmmmm, I wonder what this is about...
 		google.maps.event.addListener(marker, 'click', function() {
 			infoWindow.open(map, marker);
 		});
@@ -108,5 +112,62 @@ function initializeMap(locations) {
 	// pinPoster(locations) creates pins on the map for each location in
 	// the locations array
 	pinPoster(locations);
+
+
+	/****** New markers when clicking the map ********/
+
+	var newPin;
+
+	/**
+	 * createNewMarker place a new marker over the map and change lat and lon fields in the form
+	 */
+	function createNewMarker(location) {
+
+		var bluePin = "33B5E5";
+		var pinImage = new google.maps.MarkerImage("http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" + bluePin);
+		
+		//remove previous marker
+		if (newPin !== undefined) {
+			newPin.setMap(null);
+		}
+
+		// marker is an object with additional data about the pin for a single location
+		newPin = new google.maps.Marker({
+			map: map,
+			position: location,
+			title: name,
+			icon: pinImage
+		});
+	}
+
+	// When you click the map, it calls createNewMarker for placing a new marker over the map and change 
+	// alt, lat and lon fields in the form with this position
+	google.maps.event.addListener(map, 'click', function(event) {
+
+		createNewMarker(event.latLng);
+
+		var latitude = document.getElementById('latitude');
+		latitude.value = event.latLng.lat().toFixed(8);
+
+		var longitude = document.getElementById('longitude');
+		longitude.value = event.latLng.lng().toFixed(8);
+
+
+		var elevator = new google.maps.ElevationService;
+		elevator.getElevationForLocations({
+			'locations': [event.latLng]
+		}, function(results, status) {
+			if (status === google.maps.ElevationStatus.OK) {
+				// Retrieve the first result
+				if (results[0]) {
+					// Open the infowindow indicating the elevation at the clicked position.
+					var altitude = document.getElementById('altitude');
+					altitude.value = results[0].elevation.toFixed(1);
+				}
+			} else {
+				infowindow.setContent('Elevation service failed due to: ' + status);
+			}
+		});
+	});		
 
 }
