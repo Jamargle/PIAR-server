@@ -6,6 +6,7 @@ See the documentation below for more details.
 https://developers.google.com/maps/documentation/javascript/reference
 */
 var map;    // declares a global map variable
+var infoWindow;
 var pois = [];
 
 
@@ -36,9 +37,6 @@ function initializeMap() {
 	 */
 	function createMapMarker(placeData) {
 
-		// The next lines save location data from the search result object to local variables
-		//var lat = ;  // latitude from the place service
-		//var lon = ;  // longitude from the place service
 		var myLatLng = {
 			lat: placeData.latitud, 
 			lng: placeData.longitud
@@ -48,7 +46,7 @@ function initializeMap() {
 		//var bounds = window.mapBounds;            // current boundaries of the map window
 
 		var greenPin = "43A047";
-		var pinImage = new google.maps.MarkerImage("https://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" + greenPin);
+		var pinImage = new google.maps.MarkerImage("http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" + greenPin);
 
 		// marker is an object with additional data about the pin for a single location
 		var marker = new google.maps.Marker({
@@ -58,24 +56,32 @@ function initializeMap() {
 			icon: pinImage
 		});
 
-		// infoWindows are the little helper windows that open when you click
-		// or hover over a pin on a map. They usually contain more information
-		// about a location.
-		var infoWindow = new google.maps.InfoWindow({
-			content: name
-		});
 
+		// Callback to open and close infowindow 
 		google.maps.event.addListener(marker, 'click', function() {
-			infoWindow.open(map, marker);
-		});
+			if (infoWindow) {
+				infoWindow.close();
+			}
 
-		// this is where the pin actually gets added to the map.
-		// bounds.extend() takes in a map location object
-		//bounds.extend(new google.maps.LatLng(lat, lon));
-		// fit the map to the new marker
-		//map.fitBounds(bounds);
-		// center the map
-		//map.setCenter(bounds.getCenter());
+			infoWindow = new google.maps.InfoWindow({
+				content: name
+			});
+			infoWindow.open(map, marker);
+
+			//POR AQUI VOY METER LOS DATOS EN LOS CAMPOS PARA PODER EDITARLOS
+			/******************************************
+			*
+			1- Al principio sale la página de new con formulario sin nada
+			2- Si pinchas el mapa para un nuevo poi sale boton con crear y el method es post
+			3- Si pinchas en un poi sale en el formulario sus datos y el method es put para
+			actualizar y delete para borrar
+
+			Mirar si se puede enviar el formulario a través de los botones para que se pueda
+			quitar el atributo method del form y que sea independiente.
+
+			**************************************************************/
+			showPoiData(placeData);
+		});
 	}
 
 	/**
@@ -88,28 +94,6 @@ function initializeMap() {
 		}
 	}
 
-	/**
-	 * pinPoster(locations) takes in the array of locations created by locationFinder()
-	 * and fires off Google place searches for each location
-	 
-	function pinPoster(locations) {
-
-		// creates a Google place search service object. PlacesService does the work of
-		// actually searching for location data.
-		var service = new google.maps.places.PlacesService(map);
-
-		// Iterates through the array of locations, creates a search object for each location
-		for (var place in locations) {
-			// the search request object
-			var request = {
-				query: locations[place]
-			};
-
-			// Actually searches the Google Maps API for location data and runs the callback
-			// function with the search results after each search.
-			service.textSearch(request, callback);
-		}
-	}*/
 
 	// Sets the boundaries of the map based on pin locations
 	window.mapBounds = new google.maps.LatLngBounds();
@@ -141,10 +125,35 @@ function initializeMap() {
 	});
 
 
-	// pinPoster(locations) creates pins on the map for each location in
-	// the locations array
-	//pinPoster(pois);
 
+	/**
+	 * showPoiData is a function for refresh content in fields of the form with data
+	 */
+	function showPoiData(data) {
+		var name = document.getElementById('nombre');
+		name.value = data.nombre;
+
+		var image = document.getElementById('image');
+		image.value = data.multimedia;
+
+		var altitude = document.getElementById('altitude');
+		altitude.value = data.altitud;
+
+		var latitude = document.getElementById('latitude');
+		latitude.value = data.latitud.toFixed(8);
+
+		var longitude = document.getElementById('longitude');
+		longitude.value = data.longitud.toFixed(8);
+
+		var category = document.getElementById('categ');
+		category.value = data.categoria;
+
+		var description = document.getElementById('description');
+		description.value = data.descripcion;
+
+		var website = document.getElementById('website');
+		website.value = data.sitio_web;
+	}
 
 	/****** New markers when clicking the map ********/
 
@@ -156,7 +165,7 @@ function initializeMap() {
 	function createNewMarker(location) {
 
 		var bluePin = "33B5E5";
-		var pinImage = new google.maps.MarkerImage("https://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" + bluePin);
+		var pinImage = new google.maps.MarkerImage("http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" + bluePin);
 		
 		//remove previous marker
 		if (newPin !== undefined) {
@@ -178,12 +187,16 @@ function initializeMap() {
 
 		createNewMarker(event.latLng);
 
-		var latitude = document.getElementById('latitude');
-		latitude.value = event.latLng.lat().toFixed(8);
+		var poi = {};
 
-		var longitude = document.getElementById('longitude');
-		longitude.value = event.latLng.lng().toFixed(8);
+		poi.nombre = 'Nombre del PI';
+		poi.multimedia = 'URL de la imagen';
+		poi.categoria = 'Categoria';
+		poi.descripcion = 'Descripcion del PI';
+		poi.sitio_web = 'Web del PI';
 
+		poi.latitud = event.latLng.lat();
+		poi.longitud = event.latLng.lng();
 
 		var elevator = new google.maps.ElevationService;
 		elevator.getElevationForLocations({
@@ -193,13 +206,15 @@ function initializeMap() {
 				// Retrieve the first result
 				if (results[0]) {
 					// Open the infowindow indicating the elevation at the clicked position.
-					var altitude = document.getElementById('altitude');
-					altitude.value = results[0].elevation.toFixed(1);
+					poi.altitud = results[0].elevation.toFixed(1);
+					showPoiData(poi);
 				}
 			} else {
 				infowindow.setContent('Elevation service failed due to: ' + status);
 			}
 		});
+
+		showPoiData(poi);
 	});
 
 }
