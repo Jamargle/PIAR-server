@@ -29,7 +29,7 @@ router.get('/map', poisController.showMap);
 router.get('/new', poisController.new);
 router.post('/create_poi', poisController.create);
 router.put('/update', poisController.update);
-router.delete('/delete', poisController.destroy);
+router.post('/delete', poisController.destroy);
 
 
 

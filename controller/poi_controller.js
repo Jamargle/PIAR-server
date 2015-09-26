@@ -167,7 +167,7 @@ exports.create = function(req, res) {
 			res.redirect('/');
 		}).catch(function(error) {
 		// Ooops, do some error-handling
-		//http://docs.sequelizejs.com/en/latest/docs/instances/
+		//docs.sequelizejs.com/en/latest/docs/instances/
 		});
 
 };
@@ -209,11 +209,20 @@ exports.update = function(req, res) {
 
 // DELETE /delete
 exports.destroy = function(req, res) {
-/*
-	req.quiz.destroy().then( function() {
-		res.redirect('/quizes');
-	}).catch(function(error){next(error)});
-*/
+//Para lo de buscar y eso
+//http://docs.sequelizejs.com/en/latest/docs/models-usage/
+
+	models.Poi.destroy({
+		where: { id_poi: req.body.newPoi.id_poi }
+	}).then( function() {
+		console.log("Borrado con éxito");
+		res.render('new', {
+			title: 'PI Manager', 
+			newPoi: emptyPoi, 
+			errors: []
+		});
+	});
+
 };
 
 
