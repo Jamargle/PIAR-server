@@ -95,7 +95,7 @@ exports.new = function(req, res) {
 	});
 
 	res.render('new', {
-		title: 'Crea un nuevo PI', 
+		title: 'Gestión de PI', 
 		newPoi: poi, 
 		errors: []
 	});
@@ -107,66 +107,52 @@ exports.new = function(req, res) {
 exports.create = function(req, res) {
 	var poi = models.Poi.build( req.body.newPoi );
 
-/*
-console.log("id:"+req.body.newPoi.id_poi+" y para poi:" + poi.id_poi + "\n");
-console.log("id_usuario:"+req.body.newPoi.usuario_id_usuario+" y para poi:" + poi.usuario_id_usuario + "\n");
-console.log("nombre:"+req.body.newPoi.nombre+" y para poi:" + poi.nombre + "\n");
-console.log("multimedia:"+req.body.newPoi.multimedia+" y para poi:" + poi.multimedia + "\n");
-console.log("altitud:"+req.body.newPoi.altitud+" y para poi:" + poi.altitud + "\n");
-console.log("latitud:"+req.body.newPoi.latitud+" y para poi:" + poi.latitud + "\n");
-console.log("longitud:"+req.body.newPoi.longitud+" y para poi:" + poi.longitud + "\n");
-console.log("categoria:"+req.body.newPoi.categoria+" y para poi:" + poi.categoria + "\n");
-console.log("subcategoria:"+req.body.newPoi.subcategoria+" y para poi:" + poi.subcategoria + "\n");
-console.log("deporte_principal:"+req.body.newPoi.deporte_principal+" y para poi:" + poi.deporte_principal + "\n");
-console.log("descripcion:"+req.body.newPoi.descripcion+" y para poi:" + poi.descripcion + "\n");
-console.log("sitio_web:"+req.body.newPoi.sitio_web+" y para poi:" + poi.sitio_web + "\n");
-console.log("horario_apertura:"+req.body.newPoi.horario_apertura+" y para poi:" + poi.horario_apertura + "\n");
-console.log("horario_cierre:"+req.body.newPoi.horario_cierre+" y para poi:" + poi.horario_cierre + "\n");
-console.log("edad_minima:"+req.body.newPoi.edad_minima+" y para poi:" + poi.edad_minima + "\n");
-console.log("edad_maxima:"+req.body.newPoi.edad_maxima+" y para poi:" + poi.edad_maxima + "\n");
-console.log("precio:"+req.body.newPoi.precio+" y para poi:" + poi.precio + "\n");
-*/	
-	
-poi.altitud = parseFloat(req.body.newPoi.altitud).toFixed(1);
-//	var err = poi.validate();
+	poi.altitud = parseFloat(req.body.newPoi.altitud).toFixed(1);
 
-
-//	if (err !== undefined) {
-//console.log("1 error:" + err + " y errors:" + err.errors+"\n\n");		
-//		res.render('new', {newPoi: poi, title: 'Crea un nuevo PI', errors: err.errors});
-//	}else{
-console.log("2 a guardar:" + poi.nombre+"\n\n");
-		poi.save({fields: // save poi in DB
-			[ 
-			"usuario_id_usuario",
-			"nombre",
-			"multimedia", 
-			"altitud",
-			"latitud", 
-			"longitud", 
-			"categoria",
-			"descripcion", 
-			"sitio_web"
-			]
-			}).then( function(){ 
-				console.log("insertado PI con exito");
-				res.redirect('/');
-			}); 
-//	}
+	poi.save({fields: // save poi in DB
+		[ 
+		"usuario_id_usuario",
+		"nombre",
+		"multimedia", 
+		"altitud",
+		"latitud", 
+		"longitud", 
+		"categoria",
+		"descripcion", 
+		"sitio_web"
+		]
+		}).then( function(){ 
+			console.log("insertado PI con exito");
+			res.redirect('/');
+		});
 };
 
-
+/*
 // GET /pois/:id/edit
 exports.edit = function(req, res) {
-/*  
+  
 	var quiz = req.quiz;  // req.quiz: autoload de instancia de quiz
 	res.render('quizes/edit', {quiz: quiz, errors: []});
-  */
-};
+  
+};*/
 
 
-// PUT /pois/:id
+// POST /update
 exports.update = function(req, res) {
+
+	console.log("Página para actualizarrrr el log es:" + req.body.newPoi.id_poi);
+	//res.redirect('/');
+/*	var poi = models.Poi.build( req.body.newPoi );
+
+	res.render('new', {
+		title: 'Gestión de PI', 
+		newPoi: poi, 
+		errors: []
+	});
+*/
+
+	//var poi = models.Poi.build( req.body.newPoi );
+	
 /*  
 	req.quiz.pregunta  = req.body.quiz.pregunta;
 	req.quiz.respuesta = req.body.quiz.respuesta;
@@ -185,7 +171,7 @@ exports.update = function(req, res) {
 };
 
 
-// DELETE /pois/:id
+// POST /delete
 exports.destroy = function(req, res) {
 /*
 	req.quiz.destroy().then( function() {

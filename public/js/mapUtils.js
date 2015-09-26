@@ -8,6 +8,8 @@ https://developers.google.com/maps/documentation/javascript/reference
 var map;    // declares a global map variable
 var infoWindow;
 var pois = [];
+// declares an action for actual data in the form. If false, a existing poi could be updated or deleted
+var createPoi = true;
 
 
 /**
@@ -80,18 +82,11 @@ function initializeMap() {
 			quitar el atributo method del form y que sea independiente.
 
 			**************************************************************/
+
+			createPoi = false;
+			changeFormButtons();
 			showPoiData(placeData);
 		});
-	}
-
-	/**
-	 * callback(results, status) makes sure the search returned results for a location.
-	 * If so, it creates a new map marker for that location.
-	 */
-	function callback(results, status) {
-		if (status == google.maps.places.PlacesServiceStatus.OK) {
-			createMapMarker(results[0]);
-		}
 	}
 
 
@@ -130,6 +125,12 @@ function initializeMap() {
 	 * showPoiData is a function for refresh content in fields of the form with data
 	 */
 	function showPoiData(data) {
+		var id = document.getElementById('id');
+		id.value = data.id_poi;
+
+		var user_id = document.getElementById('usuario_id_usuario');
+		user_id.value = data.usuario_id_usuario;
+
 		var name = document.getElementById('nombre');
 		name.value = data.nombre;
 
@@ -148,11 +149,47 @@ function initializeMap() {
 		var category = document.getElementById('categ');
 		category.value = data.categoria;
 
+		var subcategory = document.getElementById('subcateg');
+		subcategory.value = data.subcategoria;
+
+		var sport = document.getElementById('deporte');
+		sport.value = data.deporte_principal;
+
 		var description = document.getElementById('description');
 		description.value = data.descripcion;
 
 		var website = document.getElementById('website');
 		website.value = data.sitio_web;
+
+		var opens = document.getElementById('apert');
+		opens.value = data.horario_apertura;
+
+		var closes = document.getElementById('cierre');
+		closes.value = data.horario_cierre;
+
+		var minAge = document.getElementById('edad_minima');
+		minAge.value = data.edad_minima;
+
+		var maxAge = document.getElementById('edad_maxima');
+		maxAge.value = data.edad_maxima;
+
+		var price = document.getElementById('precio');
+		price.value = data.precio;
+	}
+
+	/**
+	 * changeFormButtons changes buttons for doing the right action with the form
+	 */
+	function changeFormButtons() {
+		if (createPoi) {
+			document.getElementById('create').style.visibility = "visible";
+			document.getElementById('update').style.visibility = "hidden";
+			document.getElementById('delete').style.visibility = "hidden";
+		}else{
+			document.getElementById('create').style.visibility = "hidden";
+			document.getElementById('update').style.visibility = "visible";
+			document.getElementById('delete').style.visibility = "visible";
+		}
 	}
 
 	/****** New markers when clicking the map ********/
@@ -215,6 +252,9 @@ function initializeMap() {
 		});
 
 		showPoiData(poi);
+
+		createPoi = true;	//Data is for creating a new poi
+		changeFormButtons();
 	});
 
 }
