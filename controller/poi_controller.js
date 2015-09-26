@@ -1,5 +1,27 @@
 var models = require('../models/index.js');
 
+var emptyPoi = models.Poi.build({
+		//Show a form with default values for a poi
+		id_poi: null,
+		usuario_id_usuario: 5,
+
+		nombre: 'Nombre del PI',
+		multimedia: 'URL de la imagen',
+		altitud: 0,
+		latitud: 0,
+		longitud: 0,
+		categoria: 'Categoria',
+		subcategoria: null,
+		deporte_principal: null,
+		descripcion: 'Descripcion del PI',
+		sitio_web: 'Web del PI',
+		horario_apertura: null,
+		horario_cierre: null,
+		edad_minima: null,
+		edad_maxima: null,
+		precio: null
+	});
+
 //GET  /pois_by_location/:valor?
 exports.pois_by_location = function(req, res) {
 	if (req.query.lat && isADecimal(req.query.lat) &&
@@ -72,31 +94,27 @@ exports.showMap = function(req, res) {
 //********************************
 // GET /new
 exports.new = function(req, res) {
-	var poi = models.Poi.build({
-		//Show a form with default values for a poi
-  		id_poi: null,
-  		usuario_id_usuario: 5,
-  		
-  		nombre: 'Nombre del PI',
-  		multimedia: 'URL de la imagen',
-  		altitud: 0,
-  		latitud: 0,
-  		longitud: 0,
-  		categoria: 'Categoria',
-  		subcategoria: null,
-  		deporte_principal: null,
-  		descripcion: 'Descripcion del PI',
-  		sitio_web: 'Web del PI',
-  		horario_apertura: null,
-  		horario_cierre: null,
-		edad_minima: null,
-		edad_maxima: null,
-		precio: null
-	});
+	console.log("id:"+emptyPoi.id_poi);
+	console.log("id_usuario:"+emptyPoi.usuario_id_usuario);
+	console.log("nombre:"+emptyPoi.nombre);
+	console.log("multimedia:"+emptyPoi.multimedia);
+	console.log("altitud:"+emptyPoi.altitud);
+	console.log("latitud:"+emptyPoi.latitud);
+	console.log("longitud:"+emptyPoi.longitud);
+	console.log("categoria:"+emptyPoi.categoria);
+	console.log("subcategoria:"+emptyPoi.subcategoria);
+	console.log("deporte_principal:"+emptyPoi.deporte_principal);
+	console.log("descripcion:"+emptyPoi.descripcion);
+	console.log("sitio_web:"+emptyPoi.sitio_web);
+	console.log("horario_apertura:"+emptyPoi.horario_apertura);
+	console.log("horario_cierre:"+emptyPoi.horario_cierre);
+	console.log("edad_minima:"+emptyPoi.edad_minima);
+	console.log("edad_maxima:"+emptyPoi.edad_maxima);
+	console.log("precio:"+emptyPoi.precio);
 
 	res.render('new', {
-		title: 'Gestión de PI', 
-		newPoi: poi, 
+		title: 'PI Manager', 
+		newPoi: emptyPoi, 
 		errors: []
 	});
 };
@@ -107,10 +125,33 @@ exports.new = function(req, res) {
 exports.create = function(req, res) {
 	var poi = models.Poi.build( req.body.newPoi );
 
+
+	console.log("id:"+req.body.newPoi.id_poi+" y para poi:" + poi.id_poi + "\n");
+	console.log("id_usuario:"+req.body.newPoi.usuario_id_usuario+" y para poi:" + poi.usuario_id_usuario + "\n");
+	console.log("nombre:"+req.body.newPoi.nombre+" y para poi:" + poi.nombre + "\n");
+	console.log("multimedia:"+req.body.newPoi.multimedia+" y para poi:" + poi.multimedia + "\n");
+	console.log("altitud:"+req.body.newPoi.altitud+" y para poi:" + poi.altitud + "\n");
+	console.log("latitud:"+req.body.newPoi.latitud+" y para poi:" + poi.latitud + "\n");
+	console.log("longitud:"+req.body.newPoi.longitud+" y para poi:" + poi.longitud + "\n");
+	console.log("categoria:"+req.body.newPoi.categoria+" y para poi:" + poi.categoria + "\n");
+	console.log("subcategoria:"+req.body.newPoi.subcategoria+" y para poi:" + poi.subcategoria + "\n");
+	console.log("deporte_principal:"+req.body.newPoi.deporte_principal+" y para poi:" + poi.deporte_principal + "\n");
+	console.log("descripcion:"+req.body.newPoi.descripcion+" y para poi:" + poi.descripcion + "\n");
+	console.log("sitio_web:"+req.body.newPoi.sitio_web+" y para poi:" + poi.sitio_web + "\n");
+	console.log("horario_apertura:"+req.body.newPoi.horario_apertura+" y para poi:" + poi.horario_apertura + "\n");
+	console.log("horario_cierre:"+req.body.newPoi.horario_cierre+" y para poi:" + poi.horario_cierre + "\n");
+	console.log("edad_minima:"+req.body.newPoi.edad_minima+" y para poi:" + poi.edad_minima + "\n");
+	console.log("edad_maxima:"+req.body.newPoi.edad_maxima+" y para poi:" + poi.edad_maxima + "\n");
+	console.log("precio:"+req.body.newPoi.precio+" y para poi:" + poi.precio + "\n");
+
+
+
+
+
 	poi.altitud = parseFloat(req.body.newPoi.altitud).toFixed(1);
 
 	poi.save({fields: // save poi in DB
-		[ 
+		[
 		"usuario_id_usuario",
 		"nombre",
 		"multimedia", 
@@ -124,20 +165,15 @@ exports.create = function(req, res) {
 		}).then( function(){ 
 			console.log("insertado PI con exito");
 			res.redirect('/');
+		}).catch(function(error) {
+		// Ooops, do some error-handling
+		//http://docs.sequelizejs.com/en/latest/docs/instances/
 		});
+
 };
 
-/*
-// GET /pois/:id/edit
-exports.edit = function(req, res) {
-  
-	var quiz = req.quiz;  // req.quiz: autoload de instancia de quiz
-	res.render('quizes/edit', {quiz: quiz, errors: []});
-  
-};*/
 
-
-// POST /update
+// PUT /update
 exports.update = function(req, res) {
 
 	console.log("Página para actualizarrrr el log es:" + req.body.newPoi.id_poi);
@@ -145,7 +181,7 @@ exports.update = function(req, res) {
 /*	var poi = models.Poi.build( req.body.newPoi );
 
 	res.render('new', {
-		title: 'Gestión de PI', 
+		title: 'PI manager', 
 		newPoi: poi, 
 		errors: []
 	});
@@ -171,7 +207,7 @@ exports.update = function(req, res) {
 };
 
 
-// POST /delete
+// DELETE /delete
 exports.destroy = function(req, res) {
 /*
 	req.quiz.destroy().then( function() {

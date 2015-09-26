@@ -226,6 +226,7 @@ function initializeMap() {
 
 		var poi = {};
 
+		poi.usuario_id_usuario = 5;
 		poi.nombre = 'Nombre del PI';
 		poi.multimedia = 'URL de la imagen';
 		poi.categoria = 'Categoria';
