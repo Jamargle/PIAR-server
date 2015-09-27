@@ -125,5 +125,8 @@
 	value="<%= newPoi.precio %>">
 
 <br>
-<input type="submit" value="Guardar">
-<a href="/"><button type="button">Cancelar</button></a>
+<input type="submit" formaction="/create_poi" value="Crear" name="create" id="create" />
+<input type="submit" formaction="/update" value="Actualizar" name="update" id="update" style="visibility:hidden;" />
+<input type="submit" formaction="/delete" value="Eliminar" name="delete" id="delete" style="visibility:hidden;" />
+
+<a href="/"><button type="button">Salir</button></a>

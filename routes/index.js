@@ -24,14 +24,12 @@ router.get('/pois_by_location/:position?', poisController.pois_by_location);
 router.get('/map', poisController.showMap);
 //GET new	-> Form for a new poi
 //POST create_poi	-> Create a new poi
-//GET pois/:id?/edit	-> Edits a poi
-//PUT pois/:id?	-> Update a poi
-//DELETE pois/:id?	-> Delete a poi
+//POST pois/:id?	-> Update a poi
+//POST pois/:id?	-> Delete a poi
 router.get('/new', poisController.new);
 router.post('/create_poi', poisController.create);
-router.get('/pois/:id?/edit', poisController.edit);
-router.put('/pois/:id?', poisController.update);
-router.delete('/pois/:id?', poisController.destroy);
+router.post('/update', poisController.update);
+router.post('/delete', poisController.destroy);
 
 
 
