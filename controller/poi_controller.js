@@ -165,7 +165,11 @@ exports.create = function(req, res) {
 		]
 		}).then( function(){ 
 			console.log("insertado PI con exito");
-			res.redirect('/');
+			res.render('new', {
+				title: 'PI Manager', 
+				newPoi: emptyPoi, 
+				errors: []
+			});
 		}).catch(function(error) {
 		// Ooops, do some error-handling
 		//docs.sequelizejs.com/en/latest/docs/instances/

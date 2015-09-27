@@ -1,7 +1,7 @@
 {
   "name": "piar-api",
   "description": "API REST for serving Points of Interest for PIAR",
-  "version": "0.1.0",
+  "version": "0.6.0",
   "main": "app.js",
   "private": true,
   "scripts": {
