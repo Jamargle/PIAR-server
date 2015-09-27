@@ -28,7 +28,7 @@ router.get('/map', poisController.showMap);
 //POST pois/:id?	-> Delete a poi
 router.get('/new', poisController.new);
 router.post('/create_poi', poisController.create);
-router.put('/update', poisController.update);
+router.post('/update', poisController.update);
 router.post('/delete', poisController.destroy);
 
 

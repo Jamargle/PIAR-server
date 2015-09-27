@@ -176,34 +176,30 @@ exports.create = function(req, res) {
 // PUT /update
 exports.update = function(req, res) {
 
-	console.log("Página para actualizarrrr el log es:" + req.body.newPoi.id_poi);
-	//res.redirect('/');
-/*	var poi = models.Poi.build( req.body.newPoi );
-
-	res.render('new', {
-		title: 'PI manager', 
-		newPoi: poi, 
-		errors: []
-	});
-*/
-
-	//var poi = models.Poi.build( req.body.newPoi );
+	var values = {
+		usuario_id_usuario: req.body.newPoi.usuario_id_usuario,
+		nombre: req.body.newPoi.nombre,
+		multimedia: req.body.newPoi.multimedia, 
+		altitud: req.body.newPoi.altitud,
+		latitud: req.body.newPoi.latitud, 
+		longitud: req.body.newPoi.longitud, 
+		categoria: req.body.newPoi.categoria,
+		descripcion: req.body.newPoi.descripcion, 
+		sitio_web: req.body.newPoi.sitio_web
+	};
 	
-/*  
-	req.quiz.pregunta  = req.body.quiz.pregunta;
-	req.quiz.respuesta = req.body.quiz.respuesta;
-	req.quiz.tema = req.body.quiz.tema;
-
-	var err = req.quiz.validate();
-
-	if (err) {
-    	res.render('quizes/edit', {quiz: req.quiz, errors: err.errors});
-  	} else {
-	    req.quiz     // save: guarda campos pregunta y respuesta en DB
-		    .save( {fields: ["pregunta", "respuesta", "tema"]})
-		    .then( function(){ res.redirect('/quizes');});
-  	}     // Redirección HTTP a lista de preguntas (URL relativo)
-  */
+	models.Poi.update(
+		values,
+		{where: { id_poi: req.body.newPoi.id_poi }
+	}).then( function() {
+		console.log("Actualizado con éxito");
+		res.render('new', {
+			title: 'PI Manager', 
+			newPoi: emptyPoi, 
+			errors: []
+		});
+	});
+	
 };
 
 
