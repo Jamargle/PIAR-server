@@ -1,0 +1,12 @@
+/* TEAM */
+	José Miguel López Bayona
+        Google+:https://plus.google.com/u/0/+JoseLopezCambil/
+        Twitter: @jmlb0003
+        From: Cambil,Jaén,Spain
+
+
+/* SITE */
+	Last update:16/09/2015
+	Language:  Castellano
+	Doctype:HTML5
+	IDE: Sublime Text, FileZilla, Firefox, Chrome

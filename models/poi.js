@@ -2,7 +2,6 @@ module.exports = function(sequelize, DataTypes) {
 	return sequelize.define('poi', {
 		id_poi: { 
 			type: DataTypes.INTEGER.UNSIGNED,
-			allowNull: false,
 			autoIncrement: true,
 			primaryKey: true
 		},
@@ -13,27 +12,33 @@ module.exports = function(sequelize, DataTypes) {
 		},
 		nombre: {
 			type: DataTypes.STRING,
-			allowNull: false
+			allowNull: false,
+			validate: { notEmpty: {msg: "-> Falta el nombre del PI"}}
 		},
 		multimedia: {
 			type: DataTypes.STRING,
-			allowNull: false
+			allowNull: false,
+			validate: { notEmpty: {msg: "-> Introduce la URL de una imagen"}}
 		},
 		altitud: {
-			type: DataTypes.DECIMAL(5,1),
-			allowNull: false
+			type: DataTypes.FLOAT,
+			allowNull: false,
+			validate: { notEmpty: {msg: "-> Falta la altitud del PI"}}
 		},
 		latitud: {
 			type: DataTypes.FLOAT,
-			allowNull: false
+			allowNull: false,
+			validate: { notEmpty: {msg: "-> Falta la coordenada Latitud del PI"}}
 		},
 		longitud: {
 			type: DataTypes.FLOAT,
-			allowNull: false
+			allowNull: false,
+			validate: { notEmpty: {msg: "-> Falta la coordenada Longitud del PI"}}
 		},
 		categoria: {
 			type: DataTypes.STRING,
-			allowNull: false
+			allowNull: false,
+			validate: { notEmpty: {msg: "-> Falta la categoría del PI"}}
 		},
 		subcategoria: {
 			type: DataTypes.STRING,

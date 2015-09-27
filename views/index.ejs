@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"><title>PIAR</title>
+  <meta name='viewport' content='width=device-width, initial-scale=1' />
+
+  <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Libre+Baskerville' rel='stylesheet' type='text/css'>
+  
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+  
+  <link rel='stylesheet' type='text/css' media='only screen and (min-width: 850px)' href='/stylesheets/wide.css' />
+  <link rel='stylesheet' type='text/css' media='only screen and (max-width: 850px)' href='/stylesheets/smartphone.css' />
+
+  <script>
+  	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	ga('create', 'UA-54142002-2', {'cookieDomain': 'piarapp.herokuapp.com'});
+	ga('send', 'pageview');
+  </script>
+</head> 
+
+
+<body>
+	<header>
+		<section id="headerLinks">
+			<a id="logo" href="/" title="Ir a inicio">
+				<img src="https://lh3.googleusercontent.com/B5kG2kOX2HtQJPCY8ilXPyCK0CaBwMHrh7hd1c3newXyzR0De1o7nz0di8EG9p4EPL4=w300-rw"></img>
+			</a>
+			<a id="downloadPIAR" href="https://play.google.com/store/apps/details?id=com.jmlb0003.piar">
+				<img alt="Get it on Google Play" src="https://developer.android.com/images/brand/es_generic_rgb_wo_45.png" />
+			</a>
+			<a id="al_mapa" href="/map" title="Ir al mapa">Al mapa</a>
+		</section>
+  	
+  		<h1>PIAR <span id="subtitle">Puntos de Interés con Realidad Aumentada</span><span id="subtitle" style="font-size: 0.25em;"><a href="#enPruebas">Beta</a></span></h1>
+  		<p id="description">Piar es la nueva forma de explorar lo que te rodea. Si aún no conoces la Realidad Aumentada, te sorprenderás.<br>Utiliza tu dispositivo Android para averiguar qué tienes a tu alrededor.</p>
+  	</header>
+
+	<section id="s1">
+		<nav id="menu" role="navigation">
+			<span><a href="#queEsPiar">¿Qué es PIAR?</a></span>
+			<span><a href="#caracteristicas">Características</a></span>
+			<span><a href="#funcionamiento">Cómo funciona</a></span>
+		</nav>
+
+	</section>
+
+<!--	<section id="errors">
+		<% if (errors !== undefined && errors.length) { %>
+			<span id='ErrorMsgs'>
+			Corregir errores:<br/>
+			<% for (var i in errors) { %>
+			<span> <%= errors[i].message %> </span><br/>
+			<% } %>
+			</span>
+		<% } %>
+	</section>
+-->
+	<section id="articles">
+		<article id="queEsPiar">
+			<h3>¿Qué es PIAR?</h3>
+			<p>Piar es un navegador de Realidad Aumentada. Este tipo de aplicaciones sirven para conocer información del mundo que nos rodea.</p>
+			<iframe width="320" height="240" src="https://www.youtube.com/embed/NS5ZB--5NiQ?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen style="margin-bottom:10px;"></iframe>
+			<p>La Realidad Aumentada es una tecnología que consiste en fusionar el mundo real con información generada por un ordenador (o en este caso un teléfono o una tableta). Esto se consigue tomando imágenes con la cámara del dispositivo, se mezclan estas imágenes conforme se van captando con la información generada por el dispositivo y por último se muestra todo en la pantalla. De esta manera vemos objetos digitales superpuestos al mundo real.</p>
+			<p>PIAR te mostrará el mundo real captado a través de la cámara de tu dispositivo, combinado con la información obtenida de distintos servidores de Internet. Además, es necesario que PIAR utilice el GPS de tu dispositivo para conocer tu posición exacta y así poder calcular la posición relativa de los puntos de interés que te va a mostrar.</p>
+		</article>
+		<article id="caracteristicas">
+			<h3>Características</h3>
+			<ul>
+				<li>Posicionamiento del usuario. El dispositivo que ejecute PIAR tiene que tener activado el GPS.</li>
+				<li>Visualización de puntos de interés en Realidad Aumentada y en un mapa.</li>
+				<li>Visualización de información sobre puntos de interés.</li>
+				<li>Acceso a los sitios web de los puntos de interés.</li>
+			</ul>
+		</article>
+		<article id="funcionamiento">
+			<h3>Cómo funciona</h3>
+			<p id="enPruebas">Actualmente todo el sistema está en fase de pruebas aunque muchas de las funcionalidades están operativas.</p>
+			<p>La forma de utilizar la aplicación en el dispositivo Android es muy sencilla. Descarga PIAR en tu dispositivo Android. Arranca PIAR y espera a que descargue información cercana a ti. Enfoca tu dispositivo hacia donde quieras para saber qué puntos de interés hay por esa zona.</p>
+			<p>Hay dos modos de uso de la aplicación: uno mediante Realidad Aumentada y otro mediante un mapa. Se puede cambiar entre el modo RA y el modo Mapa en la barra de acciones desplegando la lista y eligiendo el modo deseado. En ambos modos de uso se muestran los puntos de interés cercanos a tu posición actual</p>
+			<p>Para ampliar o reducir el alcance de búsqueda de puntos de interés hay que entrar en la pantalla de filtros y configurar la distancia máxima al gusto.</p>
+			<p>Al pusar los puntos se muestra información relevante sobre ellos y si se pulsa sobre estas ventanas, aparecerá una pantalla nueva con toda la información disponible acerca del punto de interés en cuestión.</p>
+		</article>
+	</section>
+
+    <footer>
+		<section class="bloquePie">
+			<div>
+				<a href="/humans.txt" title="Datos de los creadores de la página">
+					<img width="88" height="31" alt="Humans.txt" src="/images/humanstxt-isolated-blank.gif"/>
+				</a>
+
+				<a title="Descarga PIAR en Google Play" href="https://play.google.com/store/apps/details?id=com.jmlb0003.piar">
+					<img alt="Get it on Google Play" src="https://developer.android.com/images/brand/es_generic_rgb_wo_45.png" />
+				</a>
+				
+				<strong><a title="Sitio web del autor" href="http://joselopez.hol.es">José Miguel López Bayona</a></strong> 2015</p>
+			</div>
+		</section>
+	</footer>
+</body> 
+</html>
