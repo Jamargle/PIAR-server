@@ -48,7 +48,7 @@ function initializeMap() {
 		//var bounds = window.mapBounds;            // current boundaries of the map window
 
 		var greenPin = "43A047";
-		var pinImage = new google.maps.MarkerImage("https://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" + greenPin);
+		var pinImage = new google.maps.MarkerImage("http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" + greenPin);
 
 		// marker is an object with additional data about the pin for a single location
 		var marker = new google.maps.Marker({
@@ -202,7 +202,7 @@ function initializeMap() {
 	function createNewMarker(location) {
 
 		var bluePin = "33B5E5";
-		var pinImage = new google.maps.MarkerImage("https://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" + bluePin);
+		var pinImage = new google.maps.MarkerImage("http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" + bluePin);
 		
 		//remove previous marker
 		if (newPin !== undefined) {
