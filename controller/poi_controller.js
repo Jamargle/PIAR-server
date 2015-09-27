@@ -94,6 +94,7 @@ exports.showMap = function(req, res) {
 //********************************
 // GET /new
 exports.new = function(req, res) {
+/*	
 	console.log("id:"+emptyPoi.id_poi);
 	console.log("id_usuario:"+emptyPoi.usuario_id_usuario);
 	console.log("nombre:"+emptyPoi.nombre);
@@ -111,7 +112,7 @@ exports.new = function(req, res) {
 	console.log("edad_minima:"+emptyPoi.edad_minima);
 	console.log("edad_maxima:"+emptyPoi.edad_maxima);
 	console.log("precio:"+emptyPoi.precio);
-
+*/
 	res.render('new', {
 		title: 'PI Manager', 
 		newPoi: emptyPoi, 
@@ -125,7 +126,7 @@ exports.new = function(req, res) {
 exports.create = function(req, res) {
 	var poi = models.Poi.build( req.body.newPoi );
 
-
+/*
 	console.log("id:"+req.body.newPoi.id_poi+" y para poi:" + poi.id_poi + "\n");
 	console.log("id_usuario:"+req.body.newPoi.usuario_id_usuario+" y para poi:" + poi.usuario_id_usuario + "\n");
 	console.log("nombre:"+req.body.newPoi.nombre+" y para poi:" + poi.nombre + "\n");
@@ -145,7 +146,7 @@ exports.create = function(req, res) {
 	console.log("precio:"+req.body.newPoi.precio+" y para poi:" + poi.precio + "\n");
 
 
-
+*/
 
 
 	poi.altitud = parseFloat(req.body.newPoi.altitud).toFixed(1);
