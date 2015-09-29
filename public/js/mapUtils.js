@@ -110,7 +110,7 @@ function initializeMap() {
 
 	google.maps.event.addListener(map, 'dragend', function(event) {
 		// Get updated data for the new center and show markers
-		$.getJSON(urlApi + 'all_pois', function(data) {
+		$.getJSON(urlApi + urlLat + map.getCenter().lat() + urlLng + map.getCenter().lng() + urlDist + '15', function(data) {
 			for (poi in data.api_pfc) {
 				pois.push(data.api_pfc[poi]);
 
